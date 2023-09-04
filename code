@@ -1,0 +1,185 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int sum(int a,int b){
+    return a+b;
+}
+
+void explainvector(){
+    vector<int> v;  // vector data type can be anything string,char; // v here is vector name
+
+    v.push_back(1);
+    v.emplace_back(3);
+
+    vector<pair<int,int>>vec;  // here vector data type is a pair cnting 2 int
+    vec.push_back({1,2});
+    vec.emplace_back(1,2); // no need to use curly bracket in emplace back
+
+
+    vector<int> v(5,100);  // a container containing 5 instances of 100 is defined here
+
+    vector<int> v(5); // a container having 5 zeroes or 5 garbage values is defined depend on compiler
+
+    vector<int>::iterator it = v.begin(); //v.begin has the adress of the first element of the 
+    //vector which is stored in variable 'it' 
+
+    cout << *(it) << ""; // to print the value at the memory adress we use * 
+    it++;
+
+    // iterator points at the memory adress and v.being is an iterator
+    cout << v.back(); // prints the element which is at the end of the vector
+
+    // to print all the elements of a vector
+
+    for(vector<int>::iterator it = v.begin(); it != v.end(); it++){
+        cout << *(it) << "";
+    }
+// instead of writing vector<int>::iterator we write auto and here it is the name of the variable
+
+    for(auto it = v.begin(); it!=v.end(); it++){
+        cout << *(it) << "";
+    }
+
+
+// to erase a element from the vector 
+//{1,2,3,4,5}
+v.erase(v.begin()+1);
+// now the new vector {1,3,4,5}
+
+// if want to delete 2 elements then 
+//{10,20,12,23,35}
+// v.erase(startadress,end+1 adress)
+v.erase(v.begin()+2,v.begin()+4); //{10,20,35}
+
+// inserting element in the vector
+vector<int>v(2,100); //{100,100}
+v.insert(v.begin(),300); // {300,100,100}
+v.insert(v.begin()+1,2,10); //{300,10,10,100,100}
+}
+// there is a vector copy {50,50} and you want to copy that vector copy in another vector v
+v.insert(v.begin(),copy.begin(),copy.end()); // {50,50,300,10,10,100,100}
+
+v.popback(); // pops out the last element 
+v1.swap(v2); //swaps the vector 
+v.clear();
+cout << v.empty(); // if the vector is empty prints true else false
+
+
+
+int main(){
+    int s = sum(1,5);
+    cout << s;
+    return 0;
+}
+
+
+// List in c++ stl;
+void explainlist(){
+    list<int> ls;
+    ls.push_back(2); //{2}
+    ls.emplace_back(4); //{2,4}
+    ls.push_front(5); //{5,2,4}
+    
+}
+
+
+// stack ds contains only 3 main functions push,pop,top;
+void explainstack(){
+    stack<int> st; //Last in first out
+    st.push(1); //{1}
+    st.push(2); //{2,1}
+    st.push(3); //{3,2,1}
+
+    cout << st.top(); //3
+    cout << st.size(); //3
+
+}
+
+void explainqueue(){
+    queue<int> q;
+    q.push(1); //{1}
+    q.push(2); //{1,2}
+    q.push(4); //{1,2,4}
+    q.back() += 5; //q.back = 4
+    cout << q.back(); //prints 9
+    cout << q.fornt(); //prints 1
+    q.pop(); // deletes the first element here 1
+    cout << q.front(); // 2
+
+}
+
+void explainpriorityqueue(){
+    priority_queue<int>pq;
+    //if u push the largest element comes at the first automatically 
+    //basically priority queue sorts the element in descending order as it comes 
+
+    // to store the element in ascending order meaning the smallest element first 
+    priority_queue<int, vector<int>, greater<int>> pq;
+}
+
+
+
+//set store all the element in a sorted order 
+// and stores all the unique elements only
+void explainset(){
+    set<int> st;
+    st.insert(1);
+    //similarly insert all elements 
+    auto it = st.find(3); // it is a variable iterator that stores the adress of 3 where it is present in the set
+    st.erase(5);    // erases the element from the set
+    int cnt = st.count(1); // if 1 exists in the set return 1 else 0
+    //{1,2,3,4,5}
+    auto it1 = st.find(2);
+    auto it2 = st.find(4);
+    st.erase(it1,it2); // [FIRST,LAST)
+    // {1,4,5}
+}
+
+// binary search in c++ stl
+// q1) check if x exixst in array or not 
+// a[] = {1,4,5,8,9}
+bool res = binary_search(a,a+n,3); //searches for 3 in the whole array if 3 exists returns true else flase  
+
+// lower bound function in c++ stl
+// a[] = {1,4,5,6,9,9}
+int ind = lower_bound(a,a+n,4) - a; //returns 1
+ //if 4 exists in the array it points to it (adress) we subtract it with a to get the array adress
+int ind = lower_bound(a,a+n,7) - a;// retunrs 4
+ // as 7 doesnt exists it points to the element just larger than it 
+int ind = lower_bound(a,a+n,10) -a; // returns 6
+ // as 10 doesnt exist and there is no val greater than 10 so will return the adress
+// next to the last element 
+
+
+// upper bound returns the adress of the element which is just greater than that element 
+
+
+void explainmultiset(){
+    //everything same as set except that is stores duplicate element also
+}
+
+void explainunorderedset(){
+    //same as set but does not stores in sorted order 
+    // lower bound and upper bound does not work
+}
+
+void explainmap(){
+    //stores unique keys in sorted order 
+    // we map the values in a map {key,value}
+    map<int,int>mpp; // {the key and value both are integers}
+    mpp[1]=2; //{1,2}
+    mpp.emplace({3,1}); //{3,1}
+    mpp.insert({2,4}); //{2,4}
+    map<int, pair<int,int>> mpp; //{the key is one integer and the value is 2 integers}
+    mpp[1]={1,2}; 
+    map<pair<int,int>, int> mpp; //{the key has 2 integers and the value consist of one}
+    mpp[{2,3}] = 10;
+
+    // iterating through a map 
+    for(auto it : mpp){
+        cout << it.first << " " << it.second << endl;  
+    }
+
+
+
+}
